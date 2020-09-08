@@ -1,4 +1,15 @@
+
+
+
+
 <h1>Registrarse</h1>
+<?php
+if (isset($_SESSION['registrer'])){
+    
+    var_dump($_SESSION['registrer']);
+}
+
+?>
 
 <form action="<?=base_url?>usuario/save" method="POST">
     

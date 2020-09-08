@@ -10,29 +10,19 @@ class Usuario {
     private $rol;
     private $imagen;
     private $db;
-    
+
     public function __construct() {
         $this->db = Database::connect();
     }
-    
-    
+
     function getId() {
         return $this->id;
-    }
-
-    function getDb() {
-        return $this->db;
     }
 
     function setId($id) {
         $this->id = $id;
     }
 
-    function setDb($db) {
-        $this->db = $db;
-    }
-
-        
     function getNombre() {
         return $this->nombre;
     }
@@ -58,19 +48,19 @@ class Usuario {
     }
 
     function setNombre($nombre) {
-        $this->nombre = $nombre;
+        $this->nombre = $this->db->real_escape_string($nombre);
     }
 
     function setApellidos($apellidos) {
-        $this->apellidos = $apellidos;
+        $this->apellidos = $this->db->real_escape_string($apellidos);
     }
 
     function setEmail($email) {
-        $this->email = $email;
+        $this->email = $this->db->real_escape_string($email);
     }
 
     function setPassword($password) {
-        $this->password = $password;
+        $this->password = $this->db->real_escape_string($password);
     }
 
     function setRol($rol) {
@@ -81,15 +71,19 @@ class Usuario {
         $this->imagen = $imagen;
     }
 
+    public function save() {
 
-    public function save(){
-        
-        $sql ="INSERT INTO VALUES (null , '{$this->nombre}' ,  '{$this->apellidos}' ,'{$this->email}' ,'{$this->password}' , 'user' , null)";
-        
-        
+        $sql = "INSERT INTO usuarios VALUES(NULL, '{$this->getNombre()}', '{$this->getApellidos()}', '{$this->getEmail()}', '{$this->getPassword()}', 'user', null);";
+
         $save = $this->db->query($sql);
-        
-        
+
+        $result = false;
+
+        if ($save) {
+
+            $result = true;
+        }
+        return $result;
     }
 
 }

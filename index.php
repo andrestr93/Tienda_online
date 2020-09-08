@@ -1,5 +1,6 @@
 
 <?php
+session_start();
 
 require_once 'autoload.php'; // cargamos todos los modelos 
 require_once 'config/db.php';
