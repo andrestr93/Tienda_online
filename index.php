@@ -4,6 +4,7 @@ session_start();
 
 require_once 'autoload.php'; // cargamos todos los modelos 
 require_once 'config/db.php';
+require_once 'helpers/utils.php';
 require_once 'config/parameters.php';
 require_once 'views/layout/header.php';
 require_once 'views/layout/sidebar.php';
@@ -22,6 +23,7 @@ if (isset($_GET['controller'])) { // compruebo si me llega el controlador
     
     $nombrecontrolador = $_GET['controller'] . 'Controller'; // guardamos en una variable lo que nos llega por $_get que seria la clase 
 } elseif (!isset($_GET['controller']) && !isset($_GET['action'])) {
+    
 
     $nombrecontrolador = controller_defaut;
 } else {
@@ -32,6 +34,7 @@ if (isset($_GET['controller'])) { // compruebo si me llega el controlador
 
 if (class_exists($nombrecontrolador)) { // si existe la clase creo el objeto
     // $nombrecontrolador ( Te coge el nombre de la clase que te llega a traves de $_get
+  
     $controlador = new $nombrecontrolador;
 
 

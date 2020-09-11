@@ -30,6 +30,8 @@
 
 
             <!--MENU-->
+            
+            <?php  $categorias = Utils::showCategorias()?>
 
             <nav id="menu">
 
@@ -39,25 +41,12 @@
                         <a href="menu.php">Inicio </a>
                     </li>
 
+                        <?php while ($cat = $categorias->fetch_object()):?>
                     <li>
-                        <a href="menu.php">Categoria 1 </a>
+                        <a href="menu.php"><?=$cat->nombre ?> </a>
+                        
                     </li>
-
-                    <li>
-                        <a href="menu.php">Categoria 2 </a>
-                    </li>
-
-                    <li>
-                        <a href="menu.php">Categoria 3 </a>
-                    </li>
-
-                    <li>
-                        <a href="menu.php">Categoria 4 </a>
-                    </li>
-
-                    <li>
-                        <a href="menu.php">Categoria 5 </a>
-                    </li>
+                        <?php endwhile;?>
                 </ul>
 
 

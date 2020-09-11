@@ -44,7 +44,26 @@ a:hover{
 
 }
 
+.alert_red{
 
+    color: #00ff00;
+}
+
+.alert_green{
+    color: #00ff00;
+}
+
+
+table{
+
+    width: 100%;
+    border: 1px solid black;
+    text-align: center;
+    margin-top: 25px;
+}
+td{
+    border: 1px solid black;
+}
 /*container*/
 
 /*el box sahdow se utiliza para paquetar  contenido dentro como por ejemplo cambiar el color */
@@ -125,7 +144,6 @@ a:hover{
     list-style: none;
     text-decoration: none;
     margin: 0px auto;
-    margin-left: 180px;
 }
 
 
@@ -253,6 +271,30 @@ input[type="email"]:focus{
 
 
 
+
+.buttonaparte{
+    color: white !important;
+    width: 120px;
+    padding: 10px;
+    text-align: center;
+    margin-bottom: 20px;
+    background: gray;
+    border-radius: 5px;
+    margin-left: 150px;
+    text-decoration: none;
+    border: 2px solid black;
+
+
+}
+
+
+.buttonaparte:hover{
+    
+    background: #01B1EA;
+}
+
+
+
 input[type="button"],
 input[type="submit"],
 button {
@@ -266,11 +308,11 @@ button {
     padding-right: 15px;
     background: #2979CD;
     margin-left: 55px;
-
 }
 
-.button{
 
+
+.button{
     margin-top: 15px;
     display: block;
     border-radius: 3px;
@@ -280,9 +322,10 @@ button {
     background: gray;
     text-transform: uppercase;
     text-decoration: none;
-
-
 }
+
+
+
 
 /*CENTRAL*/
 
@@ -319,7 +362,7 @@ button {
 /*PRODUCTOS*/
 
 .product{
-   
+
     width: 25%;
     float: left;
     margin-left: 10px;
@@ -352,7 +395,7 @@ button {
     height: 170px;
     margin-top: 15px;
     margin-bottom: 8px;
-   
+
 
 }
 
@@ -366,8 +409,8 @@ footer{
     text-align: center;
     padding-top: 10px;
     padding-bottom: 10px;
-    
-    
+
+
 }
 
 
