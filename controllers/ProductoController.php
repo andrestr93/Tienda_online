@@ -83,10 +83,16 @@ class productoController {
                 }
 
 
+                if (isset($_GET['id'])) {
 
+                    $producto->modify();
+                } else {
+
+                    $producto->save();
+                }
 
 // ejecutamos metodo 
-                $save = $producto->save();
+
 
 // si el metodo da true 
 
@@ -111,12 +117,11 @@ class productoController {
         Utils::isAdmin();
         if (isset($_GET['id'])) {
             $edit = true;
-            
+
             $producto = new Producto();
             $producto->setId($_GET['id']);
-           $pro =  $producto->getone();
+            $pro = $producto->getone();
             require_once 'views/producto/crear.php';
-            
         } else {
             header("Location:" . base_url . "producto/gestion");
         }

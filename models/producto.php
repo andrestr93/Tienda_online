@@ -111,6 +111,7 @@ class Producto {
         $sql = "SELECT * FROM PRODUCTOS WHERE id={$this->getId()}";
 
         $producto = $this->db->query($sql);
+        
 
         return $producto->fetch_object();
     }
