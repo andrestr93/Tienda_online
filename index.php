@@ -10,7 +10,7 @@ require_once 'views/layout/header.php';
 require_once 'views/layout/sidebar.php';
 
 
-
+// metodo que funciona cuando hay un error 
 
 function error() {
 
@@ -26,20 +26,20 @@ if (isset($_GET['controller'])) { // compruebo si me llega el controlador
     
 
     $nombrecontrolador = controller_defaut;
+    
+    
 } else {
 
     error();
     exit();
 }
 
+
 if (class_exists($nombrecontrolador)) { // si existe la clase creo el objeto
     // $nombrecontrolador ( Te coge el nombre de la clase que te llega a traves de $_get
   
     $controlador = new $nombrecontrolador;
-
-
-
-
+    
     if (isset($_GET['action']) && method_exists($controlador, $_GET['action'])) {    //comprobamos accion y  si existe el metodo dentro de la clase 
         $action = $_GET['action'];
 
@@ -50,12 +50,15 @@ if (class_exists($nombrecontrolador)) { // si existe la clase creo el objeto
         
 
         $controlador->$default(); // invocamos el metodo con la accion 
+        
+        
     } else { // sino da error diciendo la pgina web no existe 
         error();
     }
 } else { // sino da error diciendo la pgina web no existe 
     error();
 }
+
 
 require_once 'views/layout/footer.php';
 

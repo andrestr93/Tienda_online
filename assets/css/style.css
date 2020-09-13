@@ -40,7 +40,7 @@ a:visited{
 
 a:hover{
 
-    color: #00ff00;
+    color: white;
 
 }
 
@@ -61,6 +61,12 @@ table{
     text-align: center;
     margin-top: 25px;
 }
+
+
+img{
+    height: 180px;
+}
+
 td{
     border: 1px solid black;
 }
@@ -124,7 +130,7 @@ td{
 
 #logo a:hover{
 
-    text-shadow: 0px 2px 1px #222222, 0px 0px 4px #01B1EA;
+    text-shadow: 0px 2px 1px #222222 0px 0px 4px #01B1EA;
 }
 
 
@@ -287,6 +293,14 @@ input[type="email"]:focus{
 
 }
 
+ button .butdelete{
+    
+    
+    background: red
+}
+
+
+
 
 .buttonaparte:hover{
     
@@ -310,7 +324,9 @@ button {
     margin-left: 55px;
 }
 
-
+.button:hover{
+        background: #01B1EA;
+}
 
 .button{
     margin-top: 15px;
@@ -323,7 +339,6 @@ button {
     text-transform: uppercase;
     text-decoration: none;
 }
-
 
 
 

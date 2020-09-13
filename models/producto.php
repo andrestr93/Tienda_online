@@ -9,15 +9,14 @@ class Producto {
     private $precio;
     private $stock;
     private $oferta;
-    private$fecha;
+            private$fecha;
     private $imagen;
     private $db;
-    
+
     public function __construct() {
-        $this->db= Database::connect();
+        $this->db = Database::connect();
     }
-    
-    
+
     function getId() {
         return $this->id;
     }
@@ -67,23 +66,23 @@ class Producto {
     }
 
     function setNombre($nombre) {
-        $this->nombre = $nombre;
+        $this->nombre = $this->db->real_escape_string($nombre);
     }
 
     function setDescripcion($descripcion) {
-        $this->descripcion = $descripcion;
+        $this->descripcion = $this->db->real_escape_string($descripcion);
     }
 
     function setPrecio($precio) {
-        $this->precio = $precio;
+        $this->precio = $this->db->real_escape_string($precio);
     }
 
     function setStock($stock) {
-        $this->stock = $stock;
+        $this->stock = $this->db->real_escape_string($stock);
     }
 
     function setOferta($oferta) {
-        $this->oferta = $oferta;
+        $this->oferta = $this->db->real_escape_string($oferta);
     }
 
     function setFecha($fecha) {
@@ -98,14 +97,66 @@ class Producto {
         $this->db = $db;
     }
 
-public function getAll(){
-    
-    $sql = "SELECT * FROM PRODUCTOS ORDER BY id DESC";
-    
-    $productos = $this->db->query($sql);
-    
-    return $productos;
+    public function getAll() {
+
+        $sql = "SELECT * FROM PRODUCTOS ORDER BY id DESC";
+
+        $productos = $this->db->query($sql);
+
+        return $productos;
+    }
+
+    public function getone() {
+
+        $sql = "SELECT * FROM PRODUCTOS WHERE id={$this->getId()}";
+
+        $producto = $this->db->query($sql);
+
+        return $producto->fetch_object();
+    }
+
+    public function save() {
+        $sql = "INSERT INTO productos VALUES ( NULL ,  {$this->categoria_id} , '{$this->getNombre()}' ,'{$this->getDescripcion()}' , {$this->getPrecio()} , {$this->stock}  ,  null  , CURDATE() , '{$this->getImagen()}');";
+
+
+        $save = $this->db->query($sql);
+        $result = false;
+        if ($save) {
+            $result = true;
+        }
+        return $result;
+    }
+
+    public function delete() {
+
+        $sql = "DELETE FROM productos WHERE id =  {$this->getId()};";
+
+        $delete = $this->db->query($sql);
+        $result = false;
+        if ($delete) {
+            $result = true;
+        }
+        return $result;
+    }
+
+    public function modify() {
+
+        $sql = "UPDATE productos SET nombre = '{$this->getNombre()}'  , descripcion = '{$this->descripcion}' , precio = '{$this->precio}' , stock ={$this->getstock()} , categoria_id= {$this->getcategoria_id()} ";
+
+        if ($this->getImagen() != null) {
+
+            $sql .= " , imagen ='{$this->getImagen()}' ";
+        }
+
+        $sql .= " WHERE id={$this->id};";
+
+        $modify = $this->db->query($sql);
+
+        $result = false;
+        if ($modify) {
+            $result = true;
+        }
+        return $result;
+    }
 }
     
-    
-}
