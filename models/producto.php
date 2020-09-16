@@ -106,12 +106,23 @@ class Producto {
         return $productos;
     }
 
+    public function getProdCategory() {
+
+        $sql = "SELECT p.*, c.nombre AS 'catnombre' FROM productos p "
+                . "INNER JOIN categorias c ON c.id = p.categoria_id "
+                . "WHERE p.categoria_id = {$this->getCategoria_id()} "
+                . "ORDER BY id DESC";
+        $productos = $this->db->query($sql);
+
+        return $productos;
+    }
+
     public function getone() {
 
         $sql = "SELECT * FROM PRODUCTOS WHERE id={$this->getId()}";
 
         $producto = $this->db->query($sql);
-        
+
 
         return $producto->fetch_object();
     }
@@ -149,7 +160,7 @@ class Producto {
             $sql .= " , imagen ='{$this->getImagen()}' ";
         }
 
-        $sql .= " WHERE id={$this->id};";
+        $sql .= " WHERE id={$this->getId()};";
 
         $modify = $this->db->query($sql);
 
@@ -159,5 +170,13 @@ class Producto {
         }
         return $result;
     }
+
+    public function getRandom($limit) {
+
+        $sql = "SELECT* FROM productos ORDER BY RAND() LIMIT $limit";
+
+        $productos = $this->db->query($sql);
+        return $productos;
+    }
+
 }
-    

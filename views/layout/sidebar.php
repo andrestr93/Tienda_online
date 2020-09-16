@@ -2,6 +2,20 @@
 <!--BARRA LATERAL-->
 
 <aside id="lateral">
+    
+    
+    <div id="carrito" class="block_aside">
+        
+        <h3>Mi carrito</h3>
+        
+        <ul>
+            <?php $stacks = Utils::stackcarrito() ?>
+            <li><a href="<?=base_url?>/carrito/index">Productos: <?= $stacks['count']?></a></li>
+                   <li><a href="<?=base_url?>/carrito/index">Total: <?=$stacks['total']?>$</a></li>
+            <li><a href="<?=base_url?>/carrito/index">Ver carrito</a></li>
+        </ul>
+        
+    </div>
 
     <div id="login" class="block_aside">
 
@@ -32,7 +46,7 @@
 
             <?php if (isset($_SESSION['identity'])):?>
 
-                <li><a href="<?= base_url ?>pedido/mis_pedidos">Mis pedidos</a></li>
+                <li><a href="<?= base_url ?>pedido/mispedidos">Mis pedidos</a></li>
                 <li><a href="<?= base_url ?>usuario/logout">Cerrar sesión</a></li>
 
             <?php else: ?>

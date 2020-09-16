@@ -21,6 +21,15 @@ class Utils{
         
     }
     
+    
+    public static function isIdentity(){
+		if(!isset($_SESSION['identity'])){
+			header("Location:".base_url);
+		}else{
+			return true;
+		}
+	}
+    
     public static function isAdmin(){
         
         if (!isset($_SESSION['admin'])){
@@ -42,6 +51,52 @@ class Utils{
         
         return $categorias;
         
+        
+    }
+    
+    public static function showStatus ($status){
+        
+       $value = 'pendiente';
+        if ($status=='confirm'){
+            
+            $value = 'pendiente';
+            
+        }elseif ($status == 'preparation') {
+            
+                $value = 'En preparacion';
+        } elseif ($status=='ready') {
+            
+                  $value = 'Preparado';
+        
+    }else{
+              $value = 'Enviado';
+        
+    }
+    return $value;
+        
+    }
+    
+    public static function  stackcarrito(){
+        
+        $stats = array(
+            'count' =>0,
+            'total' => 0
+            
+        );
+        
+        
+        if(isset($_SESSION['carrito'])){
+            $stats['count'] = count($_SESSION['carrito']);
+            
+            
+            foreach ($_SESSION['carrito'] as $index=> $value){
+                
+                $stats['total'] += $value['precio']*$value['unidades'];
+            }
+            
+        }
+        
+        return $stats;
         
     }
     

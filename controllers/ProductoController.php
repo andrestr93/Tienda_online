@@ -6,7 +6,10 @@ class productoController {
 
     public function index() {
 
-// renderizar una vista 
+        $producto = new Producto();
+
+        $productos = $producto->getRandom(6);
+
 
 
         require_once 'views/producto/destacados.php';
@@ -80,44 +83,56 @@ class productoController {
                     move_uploaded_file($file['tmp_name'], 'uploads/images/' . $filename);
 
                     $producto->setImagen($filename);
+                } else {
+                    $_SESSION['producto'] = 'failed';
                 }
 
 
                 if (isset($_GET['id'])) {
 
-                    $producto->modify();
+                    $id = $_GET['id'];
+
+                    $producto->setId($id);
+
+                    $editar = $producto->modify();
+
+                    if ($editar) {
+
+                        $_SESSION['producto'] = 'complete';
+                    } else {
+                        $_SESSION['producto'] = 'failed';
+                    }
                 } else {
 
-                    $producto->save();
-                }
+                    $guardar = $producto->save();
 
-// ejecutamos metodo 
+                    if ($guardar) {
 
-
-// si el metodo da true 
-
-                if ($save) {
-
-                    $_SESSION['producto'] = 'complete';
-                } else {
-                    $_SESSION['producto'] = 'failed';
+                        $_SESSION['producto'] = 'complete';
+                    } else {
+                        $_SESSION['producto'] = 'failed';
+                    }
                 }
             } else {
+
                 $_SESSION['producto'] = 'failed';
             }
         } else {
+
             $_SESSION['producto'] = 'failed';
         }
+
+
+
+
 
         header("Location:" . base_url . "producto/gestion");
     }
 
     public function modify() {
-
         Utils::isAdmin();
         if (isset($_GET['id'])) {
             $edit = true;
-
             $producto = new Producto();
             $producto->setId($_GET['id']);
             $pro = $producto->getone();
@@ -153,4 +168,16 @@ class productoController {
         }
     }
 
-}
+    public function ver() {
+
+        if (isset($_GET['id'])) {
+            $producto = new Producto();
+            $producto->setId($_GET['id']);
+            $product = $producto->getone();
+
+        } 
+            require_once 'views/producto/ver.php';
+        }
+    }
+
+
