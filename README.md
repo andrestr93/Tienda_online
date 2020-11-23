@@ -2,5 +2,5 @@
 
 # CAPTURAS TIENDA
 
-![Scheme](capturastienda/captura1.jpg)
+![Scheme](capturastienda/captura1.png)
 
