@@ -1,4 +1,6 @@
 # Tienda_online
 
-#CAPTURAS TIENDA
+# CAPTURAS TIENDA
+
+![Scheme](capturastienda/captura1.jpg)
 
